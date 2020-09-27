@@ -27,3 +27,7 @@
    “mock” the mongo running database
    
    “mock” the running Express server
+
+## lab 16 events uml
+![Image](/uml/lab16.png)
+

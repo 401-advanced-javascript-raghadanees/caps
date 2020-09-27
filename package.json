@@ -1,0 +1,28 @@
+{
+  "name": "caps",
+  "version": "1.0.0",
+  "description": "1- Node.js",
+  "main": "caps.js",
+  "scripts": {
+    "test": "jest --verbose --coverage",
+    "lint": "eslint '**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/401-advanced-javascript-raghadanees/caps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/401-advanced-javascript-raghadanees/caps/issues"
+  },
+  "homepage": "https://github.com/401-advanced-javascript-raghadanees/caps#readme",
+  "dependencies": {
+    "eslint": "^7.10.0",
+    "faker": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}
