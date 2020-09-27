@@ -1,2 +1,2 @@
 # caps
-## Event Driven Applications
+## Event Driven Application
