@@ -3,7 +3,7 @@
 const net = require('net');
 require('dotenv').config();
 const faker = require('faker');
-// const thanksFuc = require('../vendor');
+
 const storeName = process.env.STORE_NAME || 'myStore';
 
 const client = new net.Socket(); // create a socket connection 
@@ -18,14 +18,15 @@ client.connect(port, host, () => {
 ///When data arrives, parse it (it should be JSON) and look for the event property
 client.on('data', (data) => {
     let jsonEventData = JSON.parse(data);
-    console.log('jsonEventData--->',jsonEventData )
-    console.log('jsonEventData.message',new Date().toLocaleTimeString(), jsonEventData.message);
+    // console.log('jsonEventData--->',jsonEventData )
+    // console.log('jsonEventData.message',new Date().toLocaleTimeString(), jsonEventData.payload);
 
     if (jsonEventData.event === 'delivered') {
-        thanksFuc();
-        // console.log(`VENDOR: Thank you for delivering ${jsonEventData.payload.orderId} :) `);
+        // thanksFuc();
+         console.log(`VENDOR: Thank you for delivering ${jsonEventData.payload.orderId} :) `);
     }
 });
+
 
 function createOrder() {
     setTimeout(() => {
@@ -43,24 +44,24 @@ function createOrder() {
             payload: orderObj
         });
         
-        console.log('message ,, JSON.stringify ', message);
+        // console.log('message ,, JSON.stringify ', message);
         client.write(message);
-        createOrder();
+        // createOrder();
     }, 5000); // this for simulate a new customer order every 5 seconds
 }
-
+createOrder();
 
 client.on('close', function () {
     console.log("connection is closed!!");
 });
 
-client.on('error', (err) => console.log('Client Error ', err.message));
+// client.on('error', (err) => console.log('Client Error ', err.message));
 
 
-function thanksFuc(payload) {
-    console.log(`VENDOR: Thank you for delivering ${payload.orderId} :) `);
-}
+// function thanksFuc(payload) {
+//     console.log(`VENDOR: Thank you for delivering ${payload.orderId} :) `);
+// }
 
 
-module.exports = thanksFuc;
+// module.exports = thanksFuc;
 module.exports = createOrder;

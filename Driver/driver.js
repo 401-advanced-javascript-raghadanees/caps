@@ -10,35 +10,35 @@ const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 4000;
 
 client.connect(port, host, () => {
-    console.log(" Driver client is connected ... ")
+  console.log(' Driver client is connected ... ');
 });
 
 client.on('data', (data) => {
-    let jsonEventData = JSON.parse(data);
-    console.log(new Date(), jsonEventData.message);
+  let jsonEventData = JSON.parse(data);
+  // console.log(new Date(), jsonEventData.payload);
 
-    if (jsonEventData.event === 'pickup') {
-        setTimeout(() => {
-            console.log(`DRIVER: picked up ${jsonEventData.payload.orderId}.`);
-            const message = {
-                event: 'in-transit',
-                payload: jsonEventData.payload,
-            };
+  if (jsonEventData.event === 'pickup') {
+    setTimeout(() => {
+      console.log(`DRIVER: picked up ${jsonEventData.payload.orderId}.`);
+      const message = {
+        event: 'in-transit',
+        payload: jsonEventData.payload,
+      };
 
-            let msg = JSON.stringify(message);
-            client.write(msg);
-        }, 1000);
+      let msg = JSON.stringify(message);
+      client.write(msg);
+    }, 1000);
 
-        setTimeout(() => {
-            console.log(`DRIVER: delivered ${jsonEventData.payload.orderId}.`);
-            const messageObject = {
-              event: 'delivered',
-              payload: jsonEventData.payload,
-            };
+    setTimeout(() => {
+      console.log(`DRIVER: delivered ${jsonEventData.payload.orderId}.`);
+      const messageObject = {
+        event: 'delivered',
+        payload: jsonEventData.payload,
+      };
       
-            let msg = JSON.stringify(messageObject);
-            client.write(msg);
-          }, 3000);
-    }
+      let msg = JSON.stringify(messageObject);
+      client.write(msg);
+    }, 3000);
+  }
 
 });
