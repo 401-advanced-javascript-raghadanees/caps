@@ -3,7 +3,6 @@
 const net = require('net');
 require('dotenv').config();
 
-
 const client = new net.Socket(); // create a socket connection 
 // connect it to CAPS-server.js : localhost port: 4000;
 
@@ -31,7 +30,7 @@ client.on('data', (data) => {
         }, 1000);
 
         setTimeout(() => {
-            console.log(`DRIVER: delivered ${jsonEventData.orderId}.`);
+            console.log(`DRIVER: delivered ${jsonEventData.payload.orderId}.`);
             const messageObject = {
               event: 'delivered',
               payload: jsonEventData.payload,

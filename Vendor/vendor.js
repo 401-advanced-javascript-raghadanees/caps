@@ -18,18 +18,19 @@ client.connect(port, host, () => {
 ///When data arrives, parse it (it should be JSON) and look for the event property
 client.on('data', (data) => {
     let jsonEventData = JSON.parse(data);
-    console.log(new Date(), jsonEventData.message);
+    console.log('jsonEventData--->',jsonEventData )
+    console.log('jsonEventData.message',new Date().toLocaleTimeString(), jsonEventData.message);
 
     if (jsonEventData.event === 'delivered') {
         thanksFuc();
         // console.log(`VENDOR: Thank you for delivering ${jsonEventData.payload.orderId} :) `);
     }
-
 });
+
 function createOrder() {
     setTimeout(() => {
 
-        let order = {
+        let orderObj = {
             storeName: storeName,
             orderId: faker.random.number(),
             customer: faker.name.findName(),
@@ -39,8 +40,9 @@ function createOrder() {
         };
         const message = JSON.stringify({
             event: 'pickup',
-            payload: order
+            payload: orderObj
         });
+        
         console.log('message ,, JSON.stringify ', message);
         client.write(message);
         createOrder();
