@@ -4,13 +4,13 @@
 const io = require('socket.io')(4000);
 
 
-const caps = io.of('/caps');
+const caps = io.of('/caps'); // localhost:4000/caps
 
 caps.on('connection', (socket) => {
   console.log(new Date().toLocaleTimeString(), 'Connected : ', socket.id);
 
   let currentRoom = '';
-
+// rooms, join 
   socket.on('join', (room) => {
 
     socket.join(room);
@@ -19,7 +19,8 @@ caps.on('connection', (socket) => {
     console.log({ currentRoom });
 
   });
-
+// seen by anyone connected to this app.
+// slick.emit('action', `Someone Joined Room : ${currentRoom}`);
   socket.on('pickup', (payload) => {
     caps.emit('pickup', payload);
     broadcast('pickup',payload);

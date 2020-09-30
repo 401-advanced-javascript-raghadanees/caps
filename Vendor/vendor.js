@@ -1,6 +1,8 @@
 'use strict';
 
 const io = require('socket.io-client');
+// const caps = io.connect('http://localhost:4000');
+
 const caps = io.connect('http://localhost:4000/caps');
 
 require('dotenv').config();
