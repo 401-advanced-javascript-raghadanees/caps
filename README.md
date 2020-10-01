@@ -31,3 +31,9 @@
 ## lab 16 events uml
 ![Image](/uml/lab16.png)
 
+## lab 17 events uml
+![Image](/uml/lab17.png)
+
+## lab 18 events uml
+![Image](/uml/lab18.png)
+
