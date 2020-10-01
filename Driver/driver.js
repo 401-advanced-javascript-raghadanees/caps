@@ -15,7 +15,7 @@ caps.on('pickup', (payload) => {
 
   
   setTimeout(() => {
-    console.log(`DRIVER : delivered up ${payload.orderId}`);
+    console.log(`DRIVER : delivered ${payload.orderId}`);
     caps.emit('delivered', payload);
   }, 3000);
 

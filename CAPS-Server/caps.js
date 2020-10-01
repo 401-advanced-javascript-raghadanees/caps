@@ -10,17 +10,17 @@ caps.on('connection', (socket) => {
   console.log(new Date().toLocaleTimeString(), 'Connected : ', socket.id);
 
   let currentRoom = '';
-// rooms, join 
+  // rooms, join 
   socket.on('join', (room) => {
 
     socket.join(room);
     currentRoom = room;
 
-    console.log({ currentRoom });
+    console.log('{ currentRoom } ....',{ currentRoom });
 
   });
-// seen by anyone connected to this app.
-// slick.emit('action', `Someone Joined Room : ${currentRoom}`);
+  // seen by anyone connected to this app.
+  // slick.emit('action', `Someone Joined Room : ${currentRoom}`);
   socket.on('pickup', (payload) => {
     caps.emit('pickup', payload);
     broadcast('pickup',payload);
@@ -43,7 +43,8 @@ caps.on('connection', (socket) => {
 });
 
 function broadcast(event , payload){
-  console.log({event,payload});
+
+  console.log('{event,payload}  ',{event,payload});
 }
 
 module.exports = caps;
